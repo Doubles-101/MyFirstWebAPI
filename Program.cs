@@ -56,6 +56,19 @@ app.MapDelete("/weatherforecast/{index}", (int index) =>
 .WithName("DeleteWeatherForecast")
 .WithOpenApi();
 
+app.MapPut("/weatherforecast/{index}", (int index, WeatherForecast updatedForecast) =>
+{
+    if (index < 0 || index >= forecasts.Count)
+    {
+        return Results.NotFound($"No forecast found at index {index}.");
+    }
+
+    forecasts[index] = updatedForecast;
+    return Results.Ok(updatedForecast);
+})
+.WithName("UpdateWeatherForecast")
+.WithOpenApi();
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
