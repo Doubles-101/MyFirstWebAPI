@@ -21,19 +21,25 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
+var forecasts = new List<WeatherForecast>
+{
+    new WeatherForecast(DateOnly.FromDateTime(DateTime.Now), 25, "Warm"),
+    new WeatherForecast(DateOnly.FromDateTime(DateTime.Now.AddDays(1)), 30, "Hot")
+};
+
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    return forecasts;
 })
 .WithName("GetWeatherForecast")
+.WithOpenApi();
+
+app.MapPost("/weatherforecast", (WeatherForecast newForecast) => 
+{
+    forecasts.Add(newForecast);
+    return Results.Created($"/weatherforecast/{forecasts.Count - 1}", newForecast);
+})
+.WithName("AddWeatherForecast")
 .WithOpenApi();
 
 app.Run();

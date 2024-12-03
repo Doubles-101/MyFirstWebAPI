@@ -31,3 +31,4 @@
 /Users/williamwoodard/workspace/csharp/MyFirstWebAPI/obj/Debug/net8.0/MyFirstWebAPI.pdb
 /Users/williamwoodard/workspace/csharp/MyFirstWebAPI/obj/Debug/net8.0/MyFirstWebAPI.genruntimeconfig.cache
 /Users/williamwoodard/workspace/csharp/MyFirstWebAPI/obj/Debug/net8.0/ref/MyFirstWebAPI.dll
+/Users/williamwoodard/workspace/csharp/MyFirstWebAPI/obj/Debug/net8.0/MyFirstWebAPI.sourcelink.json
